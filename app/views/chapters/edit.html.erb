@@ -1,0 +1,49 @@
+<br>
+<%= form_for([@story, @chapter]) do |f| %>
+<div class="row">
+
+	<h3>サブタイトル</h3>
+	<%= @chapter.part %>:<%= f.text_area :subtitle,class: 'col-md-12' %>
+	<br>
+	<br>
+	<h3>あらすじ</h3>
+	
+	<p>
+		<%= f.text_area :parttext, :size => "30x15",class: 'col-md-12' %>
+	</p>
+	
+	<p>
+		<%= f.submit '入力完了', class: 'btn btn-success col-md-12' %>
+	</p>
+</div>
+<% end %>
+<br>
+	<%= link_to '起承転結一覧に戻る', story_path(@story) %>
+
+
+	<%= form_for([@story,@chapter,@comment]) do |f| %>
+	<h3>コメント投稿</h3>
+	<div class="row">
+		<p>
+			<%= f.text_area :commentblock, :size => "20x5",class: 'col-md-6' %>
+		</p>
+	</div>
+
+	<div class="row">
+		<p>
+			<%= f.submit '入力完了', class: 'btn btn-info col-md-6' %>
+		</p>
+	</div>
+<% end %>
+
+<h3>コメント</h3>
+
+<% @chapter.comments.each do |comment| %>
+	<p>
+		<%= comment.user.name %>さん:<%= comment.commentblock %>
+		<% if current_user.id == comment.user.id %>
+ 			<%= link_to 'Destroy', story_chapter_comment_path(@chapter.story,@chapter,comment), method: :delete %>
+ 		<% end %>
+
+	</p>
+<% end %>

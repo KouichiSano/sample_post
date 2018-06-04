@@ -1,0 +1,19 @@
+<br>
+<%= form_for([story, kishotenketsu]) do |f| %>
+	<h3>サブタイトル</h3>
+	<%= f.text_area :subtitle,class: 'col-md-12' %>
+	<br>
+	<br>
+	<h3>あらすじ</h3>
+	
+	<p>
+		<%= f.text_area :maintxt, :size => "40x20",class: 'col-md-12' %>
+	</p>
+	
+	<p>
+		<%= f.submit '入力完了', class: 'btn btn-success col-md-12' %>
+	</p>
+
+<% end %>
+<br>
+	<%= link_to '起承転結一覧に戻る', story_path(story) %>

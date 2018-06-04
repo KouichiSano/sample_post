@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @story.title %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @story.genre %>
+</p>
+
+<% if @story.user.id == current_user.id %>
+
+  <% @story.chapters.each do |chapter| %>
+    <p>
+    	<%= link_to edit_story_chapter_path(@story.id, chapter.id) do%>
+      	<h3> 
+          <%= chapter.part %>:<%= chapter.subtitle %>
+        </h3>
+      <% end %>
+      <%= simple_format(chapter.parttext) %>
+    </p>
+    <br>
+    <br>
+    <br>
+    <br>
+  <% end %>
+
+
+<h2>すべてのストーリーを結合して閲覧</h2>
+
+<p>
+  <%= link_to 'コメント込みで閲覧する', show_comment_path(@story) %>
+</p>
+<p>ダウンロードする</p>
+
+<% end %>
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>

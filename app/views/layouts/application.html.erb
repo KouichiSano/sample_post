@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Neta</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample7">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <%= link_to 'Plotter4.jp', root_path %>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="navbarEexample7">
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Story List',stories_path %></li>
+          <li><%= link_to 'MyPage',user_path(current_user) %></li>
+          <li><%= link_to 'LogOut',destroy_user_session_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'LogIn',new_user_session_path %></li>
+          <li><%= link_to 'SignUp',new_user_registration_path %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+       <div class="col-md-10 col-md-offset-1">
+        <%= yield %>
+       </div>
+    </div>
+</div>
+  </body>
+</html>
