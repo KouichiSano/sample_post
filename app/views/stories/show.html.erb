@@ -12,7 +12,7 @@
 
 <% if @story.user.id == current_user.id %>
 
-  <% @story.chapters.each do |chapter| %>
+  <% @story.起承転結.each do |chapter| %>
     <p>
     	<%= link_to edit_story_chapter_path(@story.id, chapter.id) do%>
       	<h3> 
